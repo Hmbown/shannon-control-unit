@@ -28,6 +28,13 @@ A simple **PI controller** adjusts \( \lambda \) so \( S \) tracks a target \( S
 **Result (held-out, Llama-3.2-1B):** Base **3.920 BPT** (ppl **15.14**) → **SCU** **3.676 BPT** (ppl **12.78**),  
 **Δ = −0.244 BPT** (≈ **−15.6%** perplexity).
 
+## Available Models
+
+- **Main directory**: Llama-3.2-1B SCU adapter (validated, S=1.0%)
+- **1b-scu/**: Same as main (Llama-3.2-1B SCU, S=1.0%, λ adaptive)
+- **3b-scu/**: Llama-3.2-3B SCU adapter (S=2.88%, λ=2.61) 
+- **3b-fixed/**: Llama-3.2-3B fixed λ=0.5 (S=3.35%)
+
 ![Validation: Base vs SCU](assets/figures/validation_delta.png)
 
 ---
@@ -60,16 +67,22 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import torch
 
+# For 1B model (recommended - validated with 6.2% improvement)
 base_id = "meta-llama/Llama-3.2-1B"  # accept terms on HF first
 base = AutoModelForCausalLM.from_pretrained(base_id, device_map="auto", torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32)
 tok  = AutoTokenizer.from_pretrained(base_id)
 if tok.pad_token is None: tok.pad_token = tok.eos_token
 base.config.pad_token_id = tok.pad_token_id
 
-model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit")  # choose subfolder if needed
+# Load the validated 1B adapter (main directory or 1b-scu/)
+model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit")  
+
+# Or for 3B models, use:
+# base_id = "meta-llama/Llama-3.2-3B"
+# model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit", subfolder="3b-scu")
 ```
 
-**Demo notebook:** [View on HuggingFace](https://huggingface.co/hunterbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb) → Click "Open in Colab" button there
+**Demo notebook:** [Open in Colab](https://huggingface.co/hunterbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb) (hosted on HuggingFace)
 
 ---
 
