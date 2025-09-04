@@ -62,3 +62,6 @@ data/*.json
 *.bak
 *.log
 .vercel
+
+# Private outreach materials
+scu_outreach/
