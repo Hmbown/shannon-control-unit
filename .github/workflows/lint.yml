@@ -1,0 +1,21 @@
+name: Lint and Sanity
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  sanity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check notebook exists
+        run: |
+          test -f notebooks/SCU_Demo.ipynb
+      - name: Check figures exist
+        run: |
+          test -f assets/figures/s_curve.png
+          test -f assets/figures/lambda_curve.png
+      - name: Verify trainer CSV header contract
+        run: |
+          grep -F "['step', 'data_bpt', 'param_bpt', 'total_bpt', 'S', 'lambda', 'I', 'wall_time_s']" scripts/train_scu.py

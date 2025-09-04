@@ -173,8 +173,8 @@ def main(args):
         csv_path.parent.mkdir(parents=True, exist_ok=True)
         csv_file = open(csv_path, 'w', newline='')
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(['step', 'data_bpt', 'param_bpt', 'S', 'lambda', 'I', 'wall_time_s'])
-    start_time = time.time()
+        csv_writer.writerow(['step', 'data_bpt', 'param_bpt', 'total_bpt', 'S', 'lambda', 'I', 'wall_time_s'])
+        start_time = time.time()
     
     # Training loop
     model.train()
@@ -253,10 +253,12 @@ def main(args):
                       f"S={S_meas:.1%}, λ={lmbda:.3f}, I={I:.4f}")
             
             if csv_writer:
+                total_bpt = data_bpt + param_bpt
                 csv_writer.writerow([
                     global_step, 
                     f"{data_bpt:.4f}",
                     f"{param_bpt:.6f}",
+                    f"{total_bpt:.6f}",
                     f"{S_meas:.4f}",
                     f"{lmbda:.4f}",
                     f"{I:.4f}",
@@ -333,13 +335,13 @@ if __name__ == "__main__":
                        help="Number of epochs")
     parser.add_argument("--steps", type=int, default=None,
                        help="Number of steps (overrides epochs)")
-    parser.add_argument("--batch_size", type=int, default=4,
+    parser.add_argument("--batch_size", type=int, default=1,
                        help="Batch size")
     parser.add_argument("--lr", type=float, default=5e-5,
                        help="Learning rate")
     parser.add_argument("--block_size", type=int, default=1024,
                        help="Block size for chunking")
-    parser.add_argument("--gradient_accumulation_steps", type=int, default=1,
+    parser.add_argument("--gradient_accumulation_steps", type=int, default=4,
                        help="Gradient accumulation steps")
     parser.add_argument("--fp16", action="store_true",
                        help="Use FP16 mixed precision training")
