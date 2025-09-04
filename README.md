@@ -153,35 +153,6 @@ Key insight: PI control holds a **ratio** (S) constant across scale & data drift
 
 Distinct S plateaus confirm control works; S*=1% is near-optimal for this task.
 
-## Validation
-
-- **Setup**: Llama-3.2-1B fine-tune with LoRA; target `S = 1.0%`; training for 270 steps on held-out paragraphs from `data/val.txt` (not used in training). Metrics computed per step and aggregated at end.
-- **Metrics**: `DataBPT` (bits/token from CE), `ParamBPT` (Gaussian prior quadratic term normalized by tokens/epoch), `S = ParamBPT / (DataBPT + ParamBPT)`, and perplexity `2^DataBPT`.
-- **Significance**: Bootstrap CI over per-text ΔBPT shows improvement is statistically significant (95% CI excludes zero).
-
-![S Control Curve](figures/s_curve_1b.png)
-_Figure 1: S(t) tracks the target 1.0% with a ±0.2 percentage point band (green). Convergence occurs within ~200 steps and remains stable thereafter._
-
-![Lambda Evolution](figures/lambda_1b.png)
-_Figure 2: Regularization strength λ(t) on a log scale. λ increases during early correction then stabilizes within bounds, indicating a well-damped response._
-
-![Combined Control Curves](figures/control_curves_1b.png)
-_Figure 3: Combined view of S(t) and λ(t), illustrating closed-loop behavior: ratio tracking (top) and bounded λ dynamics (bottom)._ 
-
-### How to Reproduce (6 lines)
-
-```bash
-mkdir -p results logs; BASE=meta-llama/Llama-3.2-1B
-python scripts/train_scu.py --base_model $BASE --adapter_out adapters/scu_1b_s1pct --target_s 0.01 --steps 270 --log_csv logs/scu.csv
-python scripts/eval_bpt.py --base_model $BASE --texts data/val.txt --output results/base.json
-python scripts/eval_bpt.py --base_model $BASE --adapter_path adapters/scu_1b_s1pct --texts data/val.txt --output results/scu.json
-python scripts/plot_control.py --csv logs/scu.csv --tag 1b --target 0.01 --deadband 0.002
-python - <<'PY'
-import json; b=json.load(open('results/base.json')); s=json.load(open('results/scu.json'));
-print(f"ΔBPT={b['base_bpt']-s['scu_bpt']:.3f} ({100*(b['base_bpt']-s['scu_bpt'])/b['base_bpt']:.1f}%), ppl↓ {100*(1-s['scu_perplexity']/b['base_perplexity']):.1f}%")
-PY
-```
-
 ## Reproducibility
 
 ### Training with SCU (270 steps)
