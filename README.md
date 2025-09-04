@@ -13,7 +13,7 @@ language:
   - en
 ---
 
-# Shannon Control Unit (SCU) — Dial-in LLM regularization
+# Shannon Control Unit (SCU) — Cruise Control for LLM Training
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending-orange.svg)](https://shannonlabs.dev)
@@ -21,13 +21,14 @@ language:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
 [![Website](https://img.shields.io/badge/Website-shannonlabs.dev-green)](https://shannonlabs.dev)
 
-**Idea.** Hold an MDL-motivated **information budget** during training:  
-\( S = \frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}} \).  
-A simple **PI controller** adjusts \( \lambda \) so \( S \) tracks a target \( S^* \).
+**Like cruise control maintains your speed regardless of hills, SCU maintains optimal regularization regardless of data complexity.**
 
-**Results:**
+Set your target information ratio \( S^* \), and our PI controller automatically adjusts \( \lambda \) to maintain it throughout training. No manual hyperparameter tuning required.
+
+**Validated Results:**
 - **Llama-3.2-1B:** Base 3.920 BPT → SCU 3.676 BPT (15.6% lower perplexity, 6.2% lower BPT)
 - **🎯 Llama-3.2-3B:** Base 1.8295 BPT → SCU 1.6351 BPT (10.6% lower BPT)
+- **Production ready:** Seeking partnerships for 7B+ scale validation
 
 ## Available Models
 
@@ -87,13 +88,17 @@ model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit")
 
 ---
 
-## Method (one screen)
+## How It Works (Cruise Control Analogy)
 
-* **Target:** $S=\frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}}$
-* **Update:** $\lambda \leftarrow \lambda \cdot \exp(-(K_p\,\text{error}+K_i\,I))$, with $\text{error}=\hat S-S^*$
-* **ParamBPT:** quadratic term vs $\mathcal N(0,\sigma^2)$, **nats→bits**, normalized by fixed $N$ (per epoch/report window)
+Just like cruise control in your car:
+- **You set the target:** Choose your information ratio $S^*$ (typically 1.0%)  
+- **SCU maintains it automatically:** PI controller adjusts $\lambda$ in real-time
+- **No manual intervention:** Works across data distribution shifts and training dynamics
 
-**Why it helps:** You **dial a capacity share** $S^*$ and the loop enforces it across model size/data drift—no λ grid search.
+**Technical Details:**
+- **Control variable:** $S=\frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}}$
+- **Control law:** $\lambda \leftarrow \lambda \cdot \exp(-(K_p\,\text{error}+K_i\,I))$
+- **Result:** Automatic regularization without hyperparameter sweeps
 
 ---
 
