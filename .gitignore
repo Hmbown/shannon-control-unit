@@ -44,7 +44,10 @@ adapters/
 ablations/
 logs/
 *.csv
-figures/*.png
+# Allow specific demo plots
+!figures/s_curve_1b.png
+!figures/lambda_1b.png
+!figures/control_curves_1b.png
 !figures/.gitkeep
 
 # Data (except sample files)
