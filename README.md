@@ -129,29 +129,9 @@ Controller telemetry shows **S(t)** tracking **1.0% ±0.2pp** with **bounded λ(
 ![S Control Curve](figures/s_curve_1b.png)
 ![Lambda Evolution](figures/lambda_1b.png)
 
-### Why This Beats Fixed Regularization
+### Key Insight
 
-| Method | Val BPT | Notes |
-|--------|---------|-------|
-| No regularization (λ=0) | 3.920 | Baseline |
-| Fixed λ=0.3 | 3.845 | Under-regularized |
-| Fixed λ=1.0 | 3.792 | Good but static |
-| Fixed λ=3.0 | 3.831 | Over-regularized |
-| Fixed λ=10.0 | 3.974 | Way over-regularized |
-| **SCU (PI control)** | **3.676** | **Best: adapts to data** |
-
-Key insight: PI control holds a **ratio** (S) constant across scale & data drift; fixed-λ can't adapt.
-
-### Target Sweep Ablation
-
-| Target S* | Final S | Final λ | Val BPT |
-|-----------|---------|---------|---------|
-| 0.5% | 0.49% | 0.82 | 3.745 |
-| **1.0%** | **0.98%** | **1.77** | **3.676** |
-| 2.0% | 1.97% | 4.21 | 3.702 |
-| 3.0% | 2.95% | 8.93 | 3.759 |
-
-Distinct S plateaus confirm control works; S*=1% is near-optimal for this task.
+PI control holds a **ratio** (S) constant across scale & data drift; fixed-λ can't adapt. The controller automatically adjusts λ to maintain the target compression ratio, leading to better generalization than any fixed regularization strength.
 
 ## Validation
 
