@@ -45,6 +45,12 @@
     gtag('config', 'G-953F5HLW0M');
   </script>
   
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  
   <style>
     /* Smooth scrolling */
     html {
@@ -911,10 +917,10 @@
         <h2 class="section-title">Time-to-Target Metrics</h2>
         <div style="max-width: 900px; margin: 0 auto 2rem auto; color: var(--gray-800);">
           <p style="margin-bottom: .75rem;">The SCU fundamentally changes the economics of AI development.</p>
-          <p style="margin-bottom: .5rem;"><strong>Proven:</strong> 15.6% perplexity reduction on Llama-3.2-1B (3.920 → 3.676 BPT)</p>
+          <p style="margin-bottom: .5rem;"><strong>🎯 NEW 3B Results:</strong> 10.6% lower BPT (1.8295 → 1.6351)</p>
+          <p style="margin-bottom: .5rem;"><strong>1B Proven:</strong> 15.6% perplexity reduction (3.920 → 3.676 BPT)</p>
           <p style="margin-bottom: .5rem;"><strong>Innovation:</strong> PI control maintains optimal regularization automatically</p>
-          <p style="margin-bottom: .5rem;"><strong>Validation:</strong> Mechanism scales - tested at 1B and 3B parameters</p>
-          <p style="margin-bottom: .75rem;"><strong>Impact:</strong> No manual hyperparameter tuning, faster time-to-target</p>
+          <p style="margin-bottom: .75rem;"><strong>Impact:</strong> No manual hyperparameter tuning, cruise control for LLMs</p>
           <p style="font-style: italic; color: var(--gray-700);">Like cruise control for your car - set it and forget it.</p>
         </div>
         
@@ -946,6 +952,38 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+          
+          <!-- 3B Results -->
+          <div class="metric-card">
+            <h3>🎯 Llama-3.2-3B Results (NEW)</h3>
+            <table class="metrics-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Baseline</th>
+                  <th>SCU</th>
+                  <th>Improvement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BPT</td>
+                  <td>1.8295</td>
+                  <td>1.6351</td>
+                  <td style="color: var(--primary); font-weight: 600;">−10.6%</td>
+                </tr>
+                <tr>
+                  <td>Info Ratio S*</td>
+                  <td>—</td>
+                  <td>2.88%</td>
+                  <td style="color: var(--primary); font-weight: 600;">Controlled</td>
+                </tr>
+              </tbody>
+            </table>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray-600);">
+              Mechanism scales: Consistent improvement at 3B parameters
+            </p>
           </div>
           
           <!-- Control Dynamics -->
