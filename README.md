@@ -63,8 +63,7 @@ base.config.pad_token_id = tok.pad_token_id
 model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit")  # choose subfolder if needed
 ```
 
-**Colab notebook:**
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
+**Demo notebook:** [View on HuggingFace](https://huggingface.co/hunterbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb) → Click "Open in Colab" button there
 
 ---
 
