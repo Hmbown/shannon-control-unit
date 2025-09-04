@@ -957,33 +957,7 @@
             <!-- S(t) Plot -->
             <div class="plot-container">
               <div class="plot-placeholder">
-                <svg class="plot-svg" viewBox="0 0 400 300">
-                  <!-- Grid -->
-                  <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#E5E7EB" stroke-width="1"/>
-                    </pattern>
-                  </defs>
-                  <rect width="400" height="300" fill="url(#grid)" />
-                  
-                  <!-- Target band -->
-                  <rect x="50" y="120" width="300" height="60" fill="#0052E0" opacity="0.1"/>
-                  <line x1="50" y1="150" x2="350" y2="150" stroke="#0052E0" stroke-width="2" stroke-dasharray="5,5"/>
-                  
-                  <!-- S(t) curve -->
-                  <path d="M 50 180 Q 100 140, 150 155 T 250 150 T 350 150" 
-                        fill="none" stroke="#0052E0" stroke-width="3"/>
-                  
-                  <!-- Points -->
-                  <circle cx="150" cy="155" r="4" fill="#0052E0"/>
-                  <circle cx="250" cy="150" r="4" fill="#0052E0"/>
-                  <circle cx="350" cy="150" r="4" fill="#0052E0"/>
-                  
-                  <!-- Labels -->
-                  <text x="200" y="280" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#6B7280">Steps</text>
-                  <text x="30" y="150" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#6B7280">1%</text>
-                  <text x="355" y="155" font-family="IBM Plex Mono" font-size="10" fill="#0052E0">S*</text>
-                </svg>
+                <img src="/images/s_curve.png" alt="S(t) tracking target information ratio over training steps" style="width: 100%; height: auto; border-radius: 8px;">
               </div>
               <p class="plot-caption">Fig. 1 — S(t) tracking 1% target band ±0.2pp</p>
             </div>
@@ -991,26 +965,7 @@
             <!-- Lambda Plot -->
             <div class="plot-container">
               <div class="plot-placeholder">
-                <svg class="plot-svg" viewBox="0 0 400 300">
-                  <!-- Grid -->
-                  <rect width="400" height="300" fill="url(#grid)" />
-                  
-                  <!-- Lambda curve -->
-                  <path d="M 50 200 C 100 180, 150 100, 200 120 S 300 140, 350 130" 
-                        fill="none" stroke="#4A9FFF" stroke-width="3"/>
-                  
-                  <!-- Bounded region -->
-                  <rect x="50" y="50" width="300" height="200" fill="none" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="3,3"/>
-                  
-                  <!-- Points -->
-                  <circle cx="100" cy="180" r="3" fill="#4A9FFF"/>
-                  <circle cx="200" cy="120" r="3" fill="#4A9FFF"/>
-                  <circle cx="350" cy="130" r="3" fill="#4A9FFF"/>
-                  
-                  <!-- Labels -->
-                  <text x="200" y="280" text-anchor="middle" font-family="IBM Plex Mono" font-size="12" fill="#6B7280">Steps</text>
-                  <text x="30" y="130" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#6B7280">λ</text>
-                </svg>
+                <img src="/images/lambda_curve.png" alt="Lambda regularization parameter adjusting over training steps" style="width: 100%; height: auto; border-radius: 8px;">
               </div>
               <p class="plot-caption">Fig. 2 — λ(t) bounded (order-1 range)</p>
             </div>
