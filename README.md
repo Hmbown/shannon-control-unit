@@ -25,8 +25,9 @@ language:
 \( S = \frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}} \).  
 A simple **PI controller** adjusts \( \lambda \) so \( S \) tracks a target \( S^* \).
 
-**Result (held-out, Llama-3.2-1B):** Base **3.920 BPT** (ppl **15.14**) → **SCU** **3.676 BPT** (ppl **12.78**),  
-**Δ = −0.244 BPT** (≈ **−15.6%** perplexity).
+**Results:**
+- **Llama-3.2-1B:** Base **3.920 BPT** → SCU **3.676 BPT** (**−15.6%** perplexity)
+- **🎯 Llama-3.2-3B:** Base **1.8295 BPT** → SCU **1.6351 BPT** (**−10.6%** improvement)
 
 ## Available Models
 
