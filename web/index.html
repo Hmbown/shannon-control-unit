@@ -921,30 +921,28 @@
         <div class="results-grid">
           <!-- Performance Metrics -->
           <div class="metric-card">
-            <h3>Performance Metrics</h3>
+            <h3>Llama-3.2-1B Results</h3>
             <table class="metrics-table">
               <thead>
                 <tr>
-                  <th>Model</th>
-                  <th>BPT</th>
-                  <th>Perplexity</th>
+                  <th>Metric</th>
+                  <th>Baseline</th>
+                  <th>SCU</th>
+                  <th>Improvement</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Base (no adapter)</td>
+                  <td>BPT</td>
                   <td>3.920</td>
-                  <td>15.14</td>
+                  <td>3.676</td>
+                  <td style="color: var(--primary); font-weight: 600;">−0.244</td>
                 </tr>
                 <tr>
-                  <td>SCU (adapter)</td>
-                  <td>3.676</td>
+                  <td>Perplexity</td>
+                  <td>15.14</td>
                   <td>12.78</td>
-                </tr>
-                <tr class="highlight-row">
-                  <td>Δ (SCU − Base)</td>
-                  <td><strong>-0.244</strong></td>
-                  <td><strong>-15.6%</strong></td>
+                  <td style="color: var(--primary); font-weight: 600;">−15.6%</td>
                 </tr>
               </tbody>
             </table>
@@ -988,20 +986,29 @@
         
         <div style="max-width: 1000px; margin: 0 auto; display: grid; gap: 2rem;">
           <!-- Phase A -->
-          <div style="background: white; padding: 2rem; border-radius: 12px; border: 2px solid var(--primary); position: relative;">
-            <div style="position: absolute; top: -12px; left: 20px; background: var(--gray-50); padding: 0 10px;">
-              <span style="color: var(--primary); font-weight: 700; font-size: 0.875rem;">PHASE A</span>
+          <div style="background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%); padding: 2rem; border-radius: 12px; border: 3px solid var(--primary); position: relative; box-shadow: 0 4px 12px rgba(0, 82, 224, 0.1);">
+            <div style="position: absolute; top: -14px; left: 20px; background: white; padding: 0 12px; border: 2px solid var(--primary); border-radius: 4px;">
+              <span style="color: var(--primary); font-weight: 700; font-size: 0.875rem; letter-spacing: 0.05em;">PHASE A - READY NOW</span>
             </div>
-            <h3 style="color: var(--black); margin-bottom: 1rem; font-size: 1.5rem;">7B Smoke Test</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
-              <div><strong>Duration:</strong> 72-96 hours</div>
-              <div><strong>Resources:</strong> 16-32 H100s</div>
-              <div><strong>Scale:</strong> Minimal pilot</div>
+            <h3 style="color: var(--black); margin-bottom: 1.5rem; font-size: 1.75rem; font-weight: 700;">🎯 7B Smoke Test</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+              <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                <div style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.25rem;">Duration</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--black);">72-96 hours</div>
+              </div>
+              <div style="background: white; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                <div style="font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.25rem;">Resources</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--black);">16-32 H100s</div>
+              </div>
             </div>
-            <p style="color: var(--gray-700); line-height: 1.6;">
-              <strong>Target:</strong> ≥10% faster time-to-target vs tuned baseline<br>
+            <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+              <p style="margin: 0; color: var(--gray-700); line-height: 1.6;">
+                <strong style="color: var(--primary);">Target:</strong> ≥10% faster time-to-target perplexity vs tuned baseline
+              </p>
+            </div>
+            <div style="background: var(--primary); color: white; padding: 0.75rem; border-radius: 8px; text-align: center;">
               <strong>Deliverable:</strong> Public reproducibility package with full telemetry
-            </p>
+            </div>
           </div>
           
           <!-- Phase B -->
