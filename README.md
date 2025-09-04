@@ -32,6 +32,21 @@ The controller implements multiplicative updates with negative plant gain:
 
 This approach ensures stable convergence to the target compression ratio while preventing overfitting, achieving **15.6% lower perplexity** than the base model on held-out text.
 
+## 🔬 Ablation Studies
+
+We conducted ablation studies comparing fixed λ values:
+
+| Method | λ Value | Final DataBPT | S Ratio |
+|--------|---------|---------------|---------|
+| **Fixed λ=0.5** | 0.5 | 3.691 | 2.3% |
+| **Fixed λ=1.0** | 1.0 | 3.689 | 2.3% |
+| **Fixed λ=2.0** | 2.0 | 3.690 | 2.3% |
+
+### Key Validated Result (270 steps)
+- **Base Model**: 3.920 BPT (15.14 perplexity)
+- **SCU-Trained**: 3.676 BPT (12.78 perplexity)
+- **Improvement**: **6.2% better BPT, 15.6% lower perplexity**
+
 ## Quick Start
 
 ### Loading the 1B Adapter (CPU/MPS Safe)

@@ -231,7 +231,7 @@ def main(args):
             accelerator.backward(total_loss)
             
             # Gradient accumulation
-            if (global_step + 1) % args.grad_accum == 0:
+            if (global_step + 1) % args.gradient_accumulation_steps == 0:
                 optimizer.step()
                 scheduler.step()
                 optimizer.zero_grad()
