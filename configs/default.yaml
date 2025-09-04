@@ -1,0 +1,52 @@
+# Default configuration for SCU training
+
+# Model
+base_model: "meta-llama/Llama-3.2-1B"
+adapter_out: "adapters/scu_adapter"
+
+# Control parameters
+target_s: 0.01  # 1% compression ratio
+kp: 0.8         # Proportional gain
+ki: 0.15        # Integral gain
+deadband: 0.002 # ±0.2pp deadband
+lambda_init: 1.0
+lambda_min: 0.0001
+lambda_max: 10.0
+
+# Training
+prior_sigma: 0.01
+epochs: 1
+steps: 270  # Override epochs if set
+batch_size: 4
+lr: 5e-5
+block_size: 4096
+grad_accum: 1
+weight_decay: 0.0  # Must be 0 when using ParamBPT
+seed: 42
+
+# LoRA configuration
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_targets:
+  - q_proj
+  - v_proj
+  - k_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# Data
+train_data: "data/train.txt"
+val_data: "data/val.txt"
+max_texts: null
+val_split: 0.1
+
+# Logging
+log_csv: "logs/scu_training.csv"
+log_interval: 10
+
+# Device settings
+use_4bit: true  # Auto-disabled on non-CUDA
+mixed_precision: "fp16"  # For CUDA only

@@ -1,0 +1,33 @@
+* text=auto
+
+# Text files
+*.txt text
+*.md text
+*.py text
+*.yaml text
+*.yml text
+*.json text
+*.jsonl text
+*.csv text
+*.sh text
+*.cff text
+
+# Notebooks
+*.ipynb filter=nbstripout
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.pt binary
+*.pth binary
+*.bin binary
+*.safetensors binary
+
+# Large files
+*.bin filter=lfs diff=lfs merge=lfs -text
+*.safetensors filter=lfs diff=lfs merge=lfs -text
+*.pt filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text

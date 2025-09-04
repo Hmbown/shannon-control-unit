@@ -1,0 +1,5 @@
+The fundamental theorem of calculus establishes the relationship between differentiation and integration, two of the central operations in calculus. It bridges the concept of the derivative of a function with the concept of the integral.
+
+Machine learning models learn patterns from data through optimization algorithms. The training process adjusts model parameters to minimize a loss function, which measures the difference between predicted and actual outputs.
+
+Climate change represents one of the most pressing challenges of our time. Rising global temperatures, driven by greenhouse gas emissions, are causing widespread environmental impacts including sea level rise, extreme weather events, and ecosystem disruption.
