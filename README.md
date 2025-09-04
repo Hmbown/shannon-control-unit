@@ -15,6 +15,12 @@ language:
 
 # Shannon Control Unit (SCU) — Dial-in LLM regularization
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Patent Pending](https://img.shields.io/badge/Patent-Pending-orange.svg)](https://shannonlabs.dev)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Models-yellow)](https://huggingface.co/hunterbown/shannon-control-unit)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
+[![Website](https://img.shields.io/badge/Website-shannonlabs.dev-green)](https://shannonlabs.dev)
+
 **Idea.** Hold an MDL-motivated **information budget** during training:  
 \( S = \frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}} \).  
 A simple **PI controller** adjusts \( \lambda \) so \( S \) tracks a target \( S^* \).

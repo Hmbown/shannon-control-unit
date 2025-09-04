@@ -957,17 +957,17 @@
             <!-- S(t) Plot -->
             <div class="plot-container">
               <div class="plot-placeholder">
-                <img src="/images/s_curve.png" alt="S(t) tracking target information ratio over training steps" style="width: 100%; height: auto; border-radius: 8px;">
+                <img src="/images/s_curve.svg" alt="S(t) Information Ratio: Controller maintains target S* = 1.0% ± 0.2pp throughout training" style="width: 100%; height: auto; border-radius: 8px; background: white; padding: 1rem;">
               </div>
-              <p class="plot-caption">Fig. 1 — S(t) tracking 1% target band ±0.2pp</p>
+              <p class="plot-caption">Fig. 1 — S(t) tracking target information ratio at 1.0% ± 0.2pp</p>
             </div>
             
-            <!-- Lambda Plot -->
+            <!-- ParamBPT Plot -->
             <div class="plot-container">
               <div class="plot-placeholder">
-                <img src="/images/lambda_curve.png" alt="Lambda regularization parameter adjusting over training steps" style="width: 100%; height: auto; border-radius: 8px;">
+                <img src="/images/param_bpt_curve.svg" alt="Parameter Bits Per Token: Model compression tracked in real-time" style="width: 100%; height: auto; border-radius: 8px; background: white; padding: 1rem;">
               </div>
-              <p class="plot-caption">Fig. 2 — λ(t) bounded (order-1 range)</p>
+              <p class="plot-caption">Fig. 2 — ParamBPT: Model compression vs. information budget</p>
             </div>
             
             <p class="plot-note">
