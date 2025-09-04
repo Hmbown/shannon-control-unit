@@ -141,6 +141,9 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
 Controller telemetry shows **S(t)** tracking **1.0% ±0.2pp** with **bounded λ(t)**:
 
+![Validation Results](figures/validation_delta.png)
+*Held-out performance comparison showing 15.6% perplexity reduction*
+
 ![S Control Curve](figures/s_curve_1b.png)
 ![Lambda Evolution](figures/lambda_1b.png)
 

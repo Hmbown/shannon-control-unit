@@ -9,6 +9,7 @@ import argparse
 import math
 from pathlib import Path
 from datetime import datetime
+import time
 
 import torch
 import torch.nn.functional as F
@@ -79,6 +80,15 @@ def main(args):
         device_map="auto" if device != "cpu" else None,
         trust_remote_code=True
     )
+    # Memory-friendly defaults for finetuning
+    try:
+        model.config.use_cache = False
+    except Exception:
+        pass
+    try:
+        model.gradient_checkpointing_enable()
+    except Exception:
+        pass
     
     tokenizer = AutoTokenizer.from_pretrained(args.base_model)
     if tokenizer.pad_token is None:
@@ -163,7 +173,8 @@ def main(args):
         csv_path.parent.mkdir(parents=True, exist_ok=True)
         csv_file = open(csv_path, 'w', newline='')
         csv_writer = csv.writer(csv_file)
-        csv_writer.writerow(['step', 'data_bpt', 'param_bpt', 'S', 'lambda', 'I'])
+        csv_writer.writerow(['step', 'data_bpt', 'param_bpt', 'S', 'lambda', 'I', 'wall_time_s'])
+    start_time = time.time()
     
     # Training loop
     model.train()
@@ -231,7 +242,7 @@ def main(args):
             accelerator.backward(total_loss)
             
             # Gradient accumulation
-            if (global_step + 1) % args.grad_accum == 0:
+            if (global_step + 1) % args.gradient_accumulation_steps == 0:
                 optimizer.step()
                 scheduler.step()
                 optimizer.zero_grad()
@@ -248,7 +259,8 @@ def main(args):
                     f"{param_bpt:.6f}",
                     f"{S_meas:.4f}",
                     f"{lmbda:.4f}",
-                    f"{I:.4f}"
+                    f"{I:.4f}",
+                    f"{time.time() - start_time:.2f}"
                 ])
                 csv_file.flush()
             
