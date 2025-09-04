@@ -30,7 +30,7 @@ readme = textwrap.dedent(
     f"""
     # Shannon Control Unit (SCU)
 
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hunterbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
+    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
 
     ## Validation
     Base 3.920 BPT (ppl 15.14) → SCU 3.676 (ppl 12.78), Δ −0.244 BPT ≈ −15.6% ppl.
@@ -56,4 +56,3 @@ api.upload_file(
 )
 
 print("Uploaded notebook, figures, and updated model card to:", REPO)
-
