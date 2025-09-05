@@ -44,35 +44,38 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 [View validation artifacts](./3b_validation_results.json) | [Evaluation protocol](./scripts/eval_bpt.py)
 
+![Validation Results](assets/figures/validation_results.png)
+
 ## Available Models
 
-| Model | Location | Training Method | Final BPT | Status |
-|-------|----------|-----------------|-----------|--------|
-| **Llama-3.2-1B + SCU** ✅ | `hunterbown/shannon-control-unit` | PI Control (S*=1%) | **3.676** | Production |
-| **Llama-3.2-3B + SCU** ✅ | `subfolder="3b-scu"` | PI Control (S*=3%) | **1.635** | Production |
+| Model | Location | Training | Final BPT | Improvement |
+|-------|----------|----------|-----------|-------------|
+| **Llama-3.2-1B + SCU** ✅ | `hunterbown/shannon-control-unit` | PI Control (S*=1%) | **3.676** | -6.2% |
+| **Llama-3.2-3B + SCU** ✅ | `subfolder="3b-scu"` | PI Control (S*=3%) | **1.635** | -10.6% |
 
-**Note:** Both models are LoRA adapters. Load the base models from Meta first, then apply our SCU adapters.
-
-![Validation Results](assets/figures/validation_results.png)
+**Note:** Both are LoRA adapters. Load base models from Meta first, then apply our SCU adapters.
 
 ---
 
-## Training Dynamics
+## How SCU Training Works
 
 ![Training Curves](assets/figures/training_curves.png)
 
-## Ablation Study: Why Adaptive Control Wins
+**Left:** Data BPT evolution showing SCU consistently outperforming baseline  
+**Right:** Automatic S-ratio tracking within target band (1.0% ± 0.2pp)
+
+## Ablation Study: Adaptive vs Fixed λ
 
 ![Ablation Summary](assets/figures/ablation_summary.png)
 
-**Key Finding:** Adaptive PI control achieves **1.8% better BPT** than the best fixed-λ configuration, proving the value of automatic regularization.
+**Result:** PI control achieves **1.8% better BPT** than best fixed-λ, proving adaptive regularization works.
 
 <details>
-<summary><b>View raw ablation data</b></summary>
+<summary><b>View raw data</b></summary>
 
-- [PI Control CSV](./ablations/pi_control.csv)
-- [Fixed λ=1.0 CSV](./ablations/fixed_1.0.csv)  
-- [Fixed λ=5.0 CSV](./ablations/fixed_5.0.csv)
+- [PI Control data](./ablations/pi_control.csv)
+- [Fixed λ=1.0 data](./ablations/fixed_1.0.csv)
+- [Fixed λ=5.0 data](./ablations/fixed_5.0.csv)
 
 </details>
 

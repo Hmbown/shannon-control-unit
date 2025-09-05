@@ -46,35 +46,36 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 ## Available Models
 
-| Directory | Model | S* Target | λ Control | Notes |
-|-----------|-------|-----------|-----------|-------|
-| **main** | Llama-3.2-1B | 1.0% | Adaptive PI | Primary validated model |
-| **1b-scu/** | Llama-3.2-1B | 1.0% | Adaptive PI | Same as main |
-| **3b-scu/** | Llama-3.2-3B | 2.88% | Adaptive (λ=2.61) | Best 3B performance |
-| **3b-fixed/** | Llama-3.2-3B | 3.35% | Fixed λ=0.5 | Ablation study |
+| Model | Location | Training | Final BPT | Improvement |
+|-------|----------|----------|-----------|-------------|
+| **Llama-3.2-1B + SCU** ✅ | `hunterbown/shannon-control-unit` | PI Control (S*=1%) | **3.676** | -6.2% |
+| **Llama-3.2-3B + SCU** ✅ | `subfolder="3b-scu"` | PI Control (S*=3%) | **1.635** | -10.6% |
 
-**Note:** HuggingFace UI shows only the root 1B model. Load 3B models using `subfolder="3b-scu"` parameter in code.
+**Note:** Both are LoRA adapters. Load base models from Meta first, then apply our SCU adapters.
 
-![Validation: Base vs SCU](https://raw.githubusercontent.com/Hmbown/shannon-control-unit/main/assets/figures/validation_3b_comparison.png)
+![Validation Results](assets/figures/validation_results.png)
 
 ---
 
-## Control telemetry
+## How SCU Training Works
 
-**S(t) tracking 1.0% ± 0.2pp**  
-![S curve](assets/figures/s_curve.png)
+![Training Curves](assets/figures/training_curves.png)
 
-**λ(t) bounded (log scale)**  
-![Lambda curve](assets/figures/lambda_curve.png)
+**Left:** Data BPT evolution showing SCU consistently outperforming baseline  
+**Right:** Automatic S-ratio tracking within target band (1.0% ± 0.2pp)
+
+## Ablation Study: Adaptive vs Fixed λ
+
+![Ablation Summary](assets/figures/ablation_summary.png)
+
+**Result:** PI control achieves **1.8% better BPT** than best fixed-λ, proving adaptive regularization works.
 
 <details>
-<summary><b>Training curves (details)</b></summary>
+<summary><b>View raw data</b></summary>
 
-**DataBPT (bits/token)**  
-![DataBPT curve](assets/figures/data_bpt_curve.png)
-
-**ParamBPT (bits/token)**  
-![ParamBPT curve](assets/figures/param_bpt_curve.png)
+- [PI Control data](./ablations/pi_control.csv)
+- [Fixed λ=1.0 data](./ablations/fixed_1.0.csv)  
+- [Fixed λ=5.0 data](./ablations/fixed_5.0.csv)
 
 </details>
 
