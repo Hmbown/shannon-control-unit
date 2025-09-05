@@ -16,10 +16,13 @@ else
     echo "Running on Linux/CUDA"
 fi
 
-# Run the validation
-python3 test_3b_models.py \
-    --base-model "meta-llama/Llama-3.2-3B" \
-    --device $DEVICE \
+# Run validation using the public eval script
+# (test_3b_models.py was removed; this keeps the one‑liner working.)
+python3 scripts/eval_bpt.py \
+    --base_model "meta-llama/Llama-3.2-3B" \
+    --adapter_path "hunterbown/shannon-control-unit" \
+    --texts "data/val.txt" \
+    --bootstrap \
     --output "3b_validation_results_$(date +%Y%m%d_%H%M%S).json"
 
 echo ""
