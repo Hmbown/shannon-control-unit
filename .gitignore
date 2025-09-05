@@ -65,3 +65,4 @@ data/*.json
 
 # Private outreach materials
 scu_outreach/
+.hf_cache/
