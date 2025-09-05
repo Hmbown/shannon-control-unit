@@ -1,0 +1,19 @@
+{
+  "mode": "ce_kl_auto",
+  "final_data_bpt": 3.2360578913729694,
+  "final_param_bpt": 0.09577084030497149,
+  "final_mdl_bpt": 3.3318287316779407,
+  "final_optimization_loss_bpt": 3.485748839236328,
+  "final_S": 0.03009837400948832,
+  "final_lambda": 2.607171258701449,
+  "total_steps": 500,
+  "scu_metrics": {
+    "lambda": 2.607171258701449,
+    "log_lambda": 1.391579714359795,
+    "tokens_seen": 512000,
+    "integral": 0.5903447627206382,
+    "ema_data_bpt": 3.128658171406889,
+    "ema_param_bpt": 0.0956978966412806,
+    "ema_S": 0.03009837400948832
+  }
+}

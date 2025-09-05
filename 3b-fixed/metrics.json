@@ -1,0 +1,19 @@
+{
+  "mode": "ce_kl_fixed",
+  "final_data_bpt": 2.773239163254384,
+  "final_param_bpt": 0.09585396803944887,
+  "final_mdl_bpt": 2.869093131293833,
+  "final_optimization_loss_bpt": 2.8211660845182758,
+  "final_S": 0.033409151830572685,
+  "final_lambda": null,
+  "total_steps": 500,
+  "scu_metrics": {
+    "lambda": 0.5,
+    "log_lambda": -0.6931471805599453,
+    "tokens_seen": 512000,
+    "integral": 0.0,
+    "ema_data_bpt": null,
+    "ema_param_bpt": null,
+    "ema_S": null
+  }
+}

@@ -1,7 +1,10 @@
 ---
 license: llama3.2
-library_name: transformers
+library_name: peft
 pipeline_tag: text-generation
+base_model:
+  - meta-llama/Llama-3.2-1B
+  - meta-llama/Llama-3.2-3B
 tags:
   - lora
   - peft
@@ -9,8 +12,10 @@ tags:
   - regularization
   - information-theory
   - llama
+  - adapter
 language:
   - en
+inference: false
 ---
 
 # Shannon Control Unit (SCU) — Cruise Control for LLM Training
