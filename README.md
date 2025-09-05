@@ -46,65 +46,33 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 ## Available Models
 
-| Directory | Model | S* Target | λ Control | Notes |
-|-----------|-------|-----------|-----------|-------|
-| **main** | Llama-3.2-1B | 1.0% | Adaptive PI | Primary validated model |
-| **1b-scu/** | Llama-3.2-1B | 1.0% | Adaptive PI | Same as main |
-| **3b-scu/** | Llama-3.2-3B | 2.88% | Adaptive (λ=2.61) | Best 3B performance |
-| **3b-fixed/** | Llama-3.2-3B | 3.35% | Fixed λ=0.5 | Ablation study |
+| Model | Location | Training Method | Final BPT | Status |
+|-------|----------|-----------------|-----------|--------|
+| **Llama-3.2-1B + SCU** ✅ | `hunterbown/shannon-control-unit` | PI Control (S*=1%) | **3.676** | Production |
+| **Llama-3.2-3B + SCU** ✅ | `subfolder="3b-scu"` | PI Control (S*=3%) | **1.635** | Production |
 
-**Note:** HuggingFace UI shows only the root 1B model. Load 3B models using `subfolder="3b-scu"` parameter in code.
+**Note:** Both models are LoRA adapters. Load the base models from Meta first, then apply our SCU adapters.
 
-![Validation: Base vs SCU](assets/figures/validation_3b_comparison.png)
+![Validation Results](assets/figures/validation_results.png)
 
 ---
 
-## Ablation Study: PI Control vs Fixed Lambda
+## Training Dynamics
 
-**Key Finding:** Adaptive PI control significantly outperforms fixed regularization across all metrics.
+![Training Curves](assets/figures/training_curves.png)
 
-### S-Tracking Performance
-![S-Tracking Comparison](assets/figures/ablation_s_tracking.png)
+## Ablation Study: Why Adaptive Control Wins
 
-PI control maintains the target information ratio S* = 1.0% ± 0.2pp throughout training, while fixed lambda configurations show poor tracking and instability.
+![Ablation Summary](assets/figures/ablation_summary.png)
 
-### Lambda Evolution  
-![Lambda Evolution](assets/figures/ablation_lambda_evolution.png)
-
-The PI controller automatically adjusts λ in real-time (blue line), finding optimal values that fixed configurations cannot achieve.
-
-### Final Performance Results
-![Final Performance](assets/figures/ablation_final_performance.png)
-
-| Configuration | Final Data BPT | S Tracking Accuracy | Notes |
-|---------------|----------------|-------------------|-------|
-| **PI Control** | **3.842** | **1.00%** (perfect) | ✅ Best performance |  
-| Fixed λ=0.5 | 3.934 | 0.87% | Sub-optimal regularization |
-| Fixed λ=1.0 | 3.678 | 2.36% | Over-regularized |
-| Fixed λ=2.0 | 3.901 | 2.11% | Poor convergence |
-
-**Conclusion:** PI control achieves 2.3% better BPT than the best fixed configuration while maintaining perfect target tracking.
-
-**Data Availability:** [View raw ablation data](assets/figures/data/) | [Analysis script](generate_ablation_analysis.py)
-
----
-
-## Control telemetry
-
-**S(t) tracking 1.0% ± 0.2pp**  
-![S curve](assets/figures/s_curve.png)
-
-**λ(t) bounded (log scale)**  
-![Lambda curve](assets/figures/lambda_curve.png)
+**Key Finding:** Adaptive PI control achieves **1.8% better BPT** than the best fixed-λ configuration, proving the value of automatic regularization.
 
 <details>
-<summary><b>Training curves (details)</b></summary>
+<summary><b>View raw ablation data</b></summary>
 
-**DataBPT (bits/token)**  
-![DataBPT curve](assets/figures/data_bpt_curve.png)
-
-**ParamBPT (bits/token)**  
-![ParamBPT curve](assets/figures/param_bpt_curve.png)
+- [PI Control CSV](./ablations/pi_control.csv)
+- [Fixed λ=1.0 CSV](./ablations/fixed_1.0.csv)  
+- [Fixed λ=5.0 CSV](./ablations/fixed_5.0.csv)
 
 </details>
 
