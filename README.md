@@ -20,11 +20,12 @@ inference: false
 
 # Shannon Control Unit (SCU) — Cruise Control for LLM Training
 
-[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Patent Pending](https://img.shields.io/badge/Patent-Pending-orange.svg)](https://shannonlabs.dev)
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97-Models-yellow)](https://huggingface.co/hunterbown/shannon-control-unit)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
 [![Website](https://img.shields.io/badge/Website-shannonlabs.dev-green)](https://shannonlabs.dev)
+
+**Model Weights:** Llama 3.2 Community License | **Code:** Apache-2.0 ([GitHub](https://github.com/Hmbown/shannon-control-unit))
 
 **Like cruise control maintains your speed regardless of hills, SCU maintains optimal regularization regardless of data complexity.**
 
@@ -39,7 +40,9 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 | **Llama-3.2-3B** 🎯 | BPT | 1.830 | 1.635 | **-10.6%** |
 | | Perplexity | 3.56 | 3.11 | **-12.6%** |
 
-**Production ready:** Seeking partnerships for 7B+ scale validation
+**Status:** Validated at 1B/3B scales | Seeking partners for 7B+ external validation
+
+[View validation artifacts](./3b_validation_results.json) | [Evaluation protocol](./scripts/eval_bpt.py)
 
 ## Available Models
 
@@ -49,6 +52,8 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 | **1b-scu/** | Llama-3.2-1B | 1.0% | Adaptive PI | Same as main |
 | **3b-scu/** | Llama-3.2-3B | 2.88% | Adaptive (λ=2.61) | Best 3B performance |
 | **3b-fixed/** | Llama-3.2-3B | 3.35% | Fixed λ=0.5 | Ablation study |
+
+**Note:** HuggingFace UI shows only the root 1B model. Load 3B models using `subfolder="3b-scu"` parameter in code.
 
 ![Validation: Base vs SCU](assets/figures/validation_delta.png)
 
@@ -97,7 +102,7 @@ model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit")
 # model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit", subfolder="3b-scu")
 ```
 
-**Demo notebook:** [Open in Colab](https://huggingface.co/hunterbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb) (hosted on HuggingFace)
+**Demo notebook:** [Open in Colab](https://colab.research.google.com/github/Hmbown/shannon-control-unit/blob/main/notebooks/SCU_Demo.ipynb)
 
 ---
 
@@ -110,7 +115,7 @@ Just like cruise control in your car:
 
 **Technical Details:**
 - **Control variable:** $S=\frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}}$
-- **Control law:** $\lambda \leftarrow \lambda \cdot \exp(-(K_p\,\text{error}+K_i\,I))$
+- **Control law:** $\lambda \leftarrow \lambda \cdot \exp(-(K_p \cdot \text{error} + K_i \cdot I))$
 - **Result:** Automatic regularization without hyperparameter sweeps
 
 **Key Research Question:** 
@@ -120,8 +125,8 @@ Optimal $S^*$ scaling laws are still being discovered. We found 1.0% works for 1
 
 ## Licensing & IP
 
-* **Adapters/models:** Meta **Llama 3.2** Community License
-* **SCU training code:** **Apache-2.0**
-* **IP status:** U.S. **patent pending** (provisional filed September 2025)
+* **Model weights:** Meta Llama 3.2 Community License (inherited from base model)
+* **SCU training code:** Apache-2.0 License ([GitHub repository](https://github.com/Hmbown/shannon-control-unit))
+* **IP status:** U.S. patent pending (provisional filed September 2025)
 
 > Repro tips: block size 1024, batch 1, grad-accum 4, gradient checkpointing on, `use_cache=False`.
