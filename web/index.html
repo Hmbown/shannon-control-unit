@@ -965,7 +965,7 @@
             <!-- S(t) Plot -->
             <div class="plot-container">
               <div class="plot-placeholder" style="max-width: 450px; margin: 0 auto;">
-                <img src="/images/s_curve.svg" alt="S(t) Information Ratio: Controller maintains target S* = 1.0% ± 0.2pp throughout training" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px; background: white; padding: 0.25rem;">
+                <img src="/images/s_curve.png" alt="S(t) Information Ratio: Real control dynamics oscillating around target S* = 1.0% ± 0.2pp" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px; background: white; padding: 0.25rem;" onerror="this.src='/images/s_curve.svg'">
               </div>
               <p class="plot-caption">Fig. 1 — S(t) tracking target information ratio at 1.0% ± 0.2pp</p>
             </div>
@@ -973,7 +973,7 @@
             <!-- ParamBPT Plot -->
             <div class="plot-container">
               <div class="plot-placeholder" style="max-width: 450px; margin: 0 auto;">
-                <img src="/images/param_bpt_curve.svg" alt="Parameter Cost (Bits Per Token): Raw parameter cost and EMA showing controlled compression" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px; background: white; padding: 0.25rem;">
+                <img src="/images/validation_results.png" alt="Validation Results: 6.2% BPT improvement on 1B, 10.6% on 3B models" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px; background: white; padding: 0.25rem;" onerror="this.src='/images/param_bpt_curve.svg'">
               </div>
               <p class="plot-caption">Fig. 2 — Parameter Cost (BPT): Model compression under SCU control</p>
             </div>
