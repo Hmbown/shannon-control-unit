@@ -958,32 +958,35 @@
             </p>
           </div>
           
-          <!-- Control Dynamics -->
-          <div class="metric-card">
-            <h3>Control Dynamics</h3>
+          <!-- Control Dynamics - Full Width -->
+          <div class="metric-card" style="grid-column: span 2;">
+            <h3>Control Dynamics & Validation</h3>
             
-            <!-- S(t) Plot -->
-            <div class="plot-container">
-              <div class="plot-placeholder" style="max-width: 450px; margin: 0 auto;">
-                <img src="/images/s_curve.png" alt="S(t) Information Ratio: Real control dynamics oscillating around target S* = 1.0% ± 0.2pp" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px; background: white; padding: 0.25rem;" onerror="this.src='/images/s_curve.svg'">
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+              <!-- S(t) Plot -->
+              <div class="plot-container">
+                <div class="plot-placeholder">
+                  <img src="/images/s_curve.png" alt="S(t) Information Ratio: Real control dynamics" style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 8px;" onerror="this.src='/images/s_curve.svg'">
+                </div>
+                <p class="plot-caption">Fig. 1 — S(t) tracking target 1.0% ± 0.2pp (SSE: 0.068pp)</p>
               </div>
-              <p class="plot-caption">Fig. 1 — S(t) tracking target information ratio at 1.0% ± 0.2pp</p>
+              
+              <!-- Lambda Plot -->
+              <div class="plot-container">
+                <div class="plot-placeholder">
+                  <img src="/images/lambda_curve.png" alt="Lambda Evolution" style="width: 100%; height: auto; max-height: 400px; object-fit: contain; border-radius: 8px;" onerror="this.src='/images/lambda_curve.svg'">
+                </div>
+                <p class="plot-caption">Fig. 2 — λ(t) adaptive control (log scale)</p>
+              </div>
             </div>
             
-            <!-- ParamBPT Plot -->
-            <div class="plot-container">
-              <div class="plot-placeholder" style="max-width: 450px; margin: 0 auto;">
-                <img src="/images/validation_results.png" alt="Validation Results: 6.2% BPT improvement on 1B, 10.6% on 3B models" style="width: 100%; height: auto; max-height: 300px; object-fit: contain; border-radius: 8px; background: white; padding: 0.25rem;" onerror="this.src='/images/param_bpt_curve.svg'">
+            <!-- Validation Results Below -->
+            <div class="plot-container" style="margin-top: 2rem;">
+              <div class="plot-placeholder" style="max-width: 900px; margin: 0 auto;">
+                <img src="/images/validation_results.png" alt="Validation Results" style="width: 100%; height: auto; max-height: 450px; object-fit: contain; border-radius: 8px;" onerror="this.src='/images/validation_delta.png'">
               </div>
-              <p class="plot-caption">Fig. 2 — Parameter Cost (BPT): Model compression under SCU control</p>
+              <p class="plot-caption">Fig. 3 — Validation: -6.2% BPT (1B), -10.6% BPT (3B)</p>
             </div>
-            
-            <p class="plot-note" style="text-align: center; margin-top: 1rem; font-weight: 600; color: var(--gray-700);">
-              Llama-3.2-1B Results
-            </p>
-            <p class="plot-note">
-              Short training run. Controller holds S at 1.0% ±0.2pp; parameter cost stabilized.
-            </p>
           </div>
         </div>
       </div>
@@ -1107,8 +1110,8 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
           <div style="background: white; padding: 2rem; border-radius: 12px; border-left: 4px solid var(--primary);">
             <h3 style="color: var(--primary); margin-bottom: 1rem;">Validated Performance</h3>
-            <p><strong>1B Model:</strong> 6.2% BPT improvement, 15.6% perplexity reduction<br>
-            <strong>3B Model:</strong> 10.6% BPT improvement, 12.6% perplexity reduction<br>
+            <p><strong>1B Model:</strong> -6.2% BPT, -15.6% perplexity<br>
+            <strong>3B Model:</strong> -10.6% BPT, -12.6% perplexity<br>
             <a href="https://huggingface.co/hunterbown/shannon-control-unit" style="color: var(--primary);">View models on HuggingFace →</a></p>
           </div>
 
