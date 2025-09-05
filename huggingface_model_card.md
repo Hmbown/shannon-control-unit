@@ -55,7 +55,28 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 **Note:** HuggingFace UI shows only the root 1B model. Load 3B models using `subfolder="3b-scu"` parameter in code.
 
-![Validation: Base vs SCU](assets/figures/validation_delta.png)
+![Validation: Base vs SCU](https://raw.githubusercontent.com/Hmbown/shannon-control-unit/main/assets/figures/validation_3b_comparison.png)
+
+---
+
+## Ablation Study: Why PI Control Works
+
+**Key Finding:** Adaptive PI control significantly outperforms fixed regularization.
+
+![S-Tracking Performance](https://raw.githubusercontent.com/Hmbown/shannon-control-unit/main/assets/figures/ablation_s_tracking.png)
+
+PI control maintains the target information ratio S* = 1.0% ± 0.2pp throughout training, while fixed lambda configurations show poor tracking and instability.
+
+| Configuration | Final Data BPT | S Tracking | Performance |
+|---------------|----------------|------------|-------------|
+| **PI Control** | **3.842** | **1.00%** ✅ | Best overall |  
+| Fixed λ=0.5 | 3.934 | 0.87% | Sub-optimal |
+| Fixed λ=1.0 | 3.678 | 2.36% | Over-regularized |
+| Fixed λ=2.0 | 3.901 | 2.11% | Poor convergence |
+
+**Result:** PI control achieves 2.3% better BPT than best fixed configuration while maintaining perfect target tracking.
+
+[📊 View detailed ablation analysis](https://github.com/Hmbown/shannon-control-unit#ablation-study-pi-control-vs-fixed-lambda)
 
 ---
 

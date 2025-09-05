@@ -55,7 +55,7 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 **Note:** HuggingFace UI shows only the root 1B model. Load 3B models using `subfolder="3b-scu"` parameter in code.
 
-![Validation: Base vs SCU](assets/figures/validation_delta.png)
+![Validation: Base vs SCU](https://raw.githubusercontent.com/Hmbown/shannon-control-unit/main/assets/figures/validation_3b_comparison.png)
 
 ---
 

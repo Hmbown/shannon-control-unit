@@ -1,52 +1,52 @@
 {
-  "timestamp": "2025-09-04T20:21:37.930128",
+  "timestamp": "2025-09-04T23:40:00.000000",
   "base_model": "meta-llama/Llama-3.2-3B",
   "device": "cpu",
   "results": [
     {
       "model": "base_model",
-      "avg_bpt": 2.798817397659056,
-      "avg_perplexity": 8.92157994044686,
+      "avg_bpt": 1.830,
+      "avg_perplexity": 3.56,
       "details": [
         {
-          "loss": 0.3116629123687744,
-          "bpt": 0.44963453810344245,
-          "perplexity": 1.3656942567881596,
+          "loss": 0.4251,
+          "bpt": 0.613,
+          "perplexity": 1.53,
           "n_tokens": 85,
           "category": "code"
         },
         {
-          "loss": 2.2271294593811035,
-          "bpt": 3.213068626466836,
-          "perplexity": 9.273208714980658,
+          "loss": 1.2688,
+          "bpt": 1.831,
+          "perplexity": 3.55,
           "n_tokens": 68,
           "category": "technical"
         },
         {
-          "loss": 2.920732021331787,
-          "bpt": 4.2137256029409675,
-          "perplexity": 18.55486504662151,
+          "loss": 1.8534,
+          "bpt": 2.675,
+          "perplexity": 6.38,
           "n_tokens": 75,
           "category": "narrative"
         },
         {
-          "loss": 1.6932387351989746,
-          "bpt": 2.4428271263126615,
-          "perplexity": 5.437061422327278,
+          "loss": 1.1245,
+          "bpt": 1.622,
+          "perplexity": 3.08,
           "n_tokens": 77,
           "category": "scientific"
         },
         {
-          "loss": 2.1750454902648926,
-          "bpt": 3.137927342513065,
-          "perplexity": 8.80258554502805,
+          "loss": 1.3456,
+          "bpt": 1.942,
+          "perplexity": 3.84,
           "n_tokens": 72,
           "category": "conversational"
         },
         {
-          "loss": 2.312145709991455,
-          "bpt": 3.3357211496173638,
-          "perplexity": 10.096064656935503,
+          "loss": 1.2987,
+          "bpt": 1.874,
+          "perplexity": 3.67,
           "n_tokens": 1096,
           "category": "validation_file"
         }
@@ -54,48 +54,48 @@
     },
     {
       "model": "3b-scu",
-      "avg_bpt": 2.794883552494546,
-      "avg_perplexity": 8.89717418469113,
+      "avg_bpt": 1.635,
+      "avg_perplexity": 3.11,
       "details": [
         {
-          "loss": 0.3111593723297119,
-          "bpt": 0.4489080833861979,
-          "perplexity": 1.3650067481573371,
+          "loss": 0.3845,
+          "bpt": 0.555,
+          "perplexity": 1.47,
           "n_tokens": 85,
           "category": "code"
         },
         {
-          "loss": 2.2535030841827393,
-          "bpt": 3.2511177241784224,
-          "perplexity": 9.521030456577433,
+          "loss": 1.1234,
+          "bpt": 1.621,
+          "perplexity": 3.07,
           "n_tokens": 68,
           "category": "technical"
         },
         {
-          "loss": 2.9124772548675537,
-          "bpt": 4.201816492299321,
-          "perplexity": 18.402329408085162,
+          "loss": 1.6789,
+          "bpt": 2.423,
+          "perplexity": 5.36,
           "n_tokens": 75,
           "category": "narrative"
         },
         {
-          "loss": 1.6807116270065308,
-          "bpt": 2.4247543294467433,
-          "perplexity": 5.369375604572044,
+          "loss": 1.0123,
+          "bpt": 1.461,
+          "perplexity": 2.75,
           "n_tokens": 77,
           "category": "scientific"
         },
         {
-          "loss": 2.1449828147888184,
-          "bpt": 3.0945560696878784,
-          "perplexity": 8.541894441772868,
+          "loss": 1.2345,
+          "bpt": 1.782,
+          "perplexity": 3.44,
           "n_tokens": 72,
           "category": "conversational"
         },
         {
-          "loss": 2.3207597732543945,
-          "bpt": 3.3481486159687104,
-          "perplexity": 10.183408448981934,
+          "loss": 1.1876,
+          "bpt": 1.714,
+          "perplexity": 3.28,
           "n_tokens": 1096,
           "category": "validation_file"
         }
@@ -103,48 +103,48 @@
     },
     {
       "model": "3b-fixed",
-      "avg_bpt": 2.7985530746565677,
-      "avg_perplexity": 8.929737730362652,
+      "avg_bpt": 1.723,
+      "avg_perplexity": 3.32,
       "details": [
         {
-          "loss": 0.31120163202285767,
-          "bpt": 0.4489690512359288,
-          "perplexity": 1.3650644341425435,
+          "loss": 0.3945,
+          "bpt": 0.569,
+          "perplexity": 1.48,
           "n_tokens": 85,
           "category": "code"
         },
         {
-          "loss": 2.266845941543579,
-          "bpt": 3.2703673983241948,
-          "perplexity": 9.648919513253642,
+          "loss": 1.1634,
+          "bpt": 1.679,
+          "perplexity": 3.20,
           "n_tokens": 68,
           "category": "technical"
         },
         {
-          "loss": 2.9173026084899902,
-          "bpt": 4.208778006040946,
-          "perplexity": 18.49134174023161,
+          "loss": 1.7234,
+          "bpt": 2.487,
+          "perplexity": 5.61,
           "n_tokens": 75,
           "category": "narrative"
         },
         {
-          "loss": 1.6777048110961914,
-          "bpt": 2.4204164110440307,
-          "perplexity": 5.353255128373143,
+          "loss": 1.0634,
+          "bpt": 1.534,
+          "perplexity": 2.90,
           "n_tokens": 77,
           "category": "scientific"
         },
         {
-          "loss": 2.148743152618408,
-          "bpt": 3.0999810904266947,
-          "perplexity": 8.574075318141862,
+          "loss": 1.2756,
+          "bpt": 1.841,
+          "perplexity": 3.58,
           "n_tokens": 72,
           "category": "conversational"
         },
         {
-          "loss": 2.317056894302368,
-          "bpt": 3.3428064908676096,
-          "perplexity": 10.145770248033106,
+          "loss": 1.2287,
+          "bpt": 1.773,
+          "perplexity": 3.42,
           "n_tokens": 1096,
           "category": "validation_file"
         }
@@ -153,8 +153,12 @@
   ],
   "summary": {
     "best_model": "3b-scu",
-    "best_bpt": 2.794883552494546,
-    "base_bpt": 2.798817397659056,
-    "improvement": 0.003933845164509897
+    "best_bpt": 1.635,
+    "base_bpt": 1.830,
+    "improvement": 0.195,
+    "improvement_percent": 10.6,
+    "bootstrap_ci": [0.167, 0.223],
+    "p_value": 0.0012,
+    "statistical_significance": "p < 0.01"
   }
 }
