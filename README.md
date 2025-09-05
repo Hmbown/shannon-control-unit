@@ -44,8 +44,6 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 [View validation artifacts](./3b_validation_results.json) | [Evaluation protocol](./scripts/eval_bpt.py)
 
-![Validation Results](assets/figures/validation_results.png)
-
 ## Available Models
 
 | Model | Location | Training | Final BPT | Improvement |
@@ -55,14 +53,21 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 **Note:** Both are LoRA adapters. Load base models from Meta first, then apply our SCU adapters.
 
+![Validation Results](assets/figures/validation_results.png)
+
+## Control Telemetry
+
+![Lambda Evolution](assets/figures/lambda_curve.png)
+
+**Adaptive λ(t):** Real-time regularization strength adjustments in response to S-ratio deviations
+
 ---
 
 ## How SCU Training Works
 
-![Training Curves](assets/figures/training_curves.png)
+![S-ratio Tracking](assets/figures/s_curve.png)
 
-**Left:** Data BPT evolution showing SCU consistently outperforming baseline  
-**Right:** Automatic S-ratio tracking within target band (1.0% ± 0.2pp)
+**Real control dynamics:** S(t) oscillates around target (1.0% ± 0.2pp) showing active PI control adjustments. This is actual telemetry from training, not a simulation.
 
 ## Ablation Study: Adaptive vs Fixed λ
 
@@ -74,7 +79,7 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 <summary><b>View raw data</b></summary>
 
 - [PI Control data](./ablations/pi_control.csv)
-- [Fixed λ=1.0 data](./ablations/fixed_1.0.csv)
+- [Fixed λ=1.0 data](./ablations/fixed_1.0.csv)  
 - [Fixed λ=5.0 data](./ablations/fixed_5.0.csv)
 
 </details>

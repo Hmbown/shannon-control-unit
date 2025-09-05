@@ -55,14 +55,19 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 
 ![Validation Results](assets/figures/validation_results.png)
 
+## Control Telemetry
+
+![Lambda Evolution](assets/figures/lambda_curve.png)
+
+**Adaptive λ(t):** Real-time regularization strength adjustments in response to S-ratio deviations
+
 ---
 
 ## How SCU Training Works
 
-![Training Curves](assets/figures/training_curves.png)
+![S-ratio Tracking](assets/figures/s_curve.png)
 
-**Left:** Data BPT evolution showing SCU consistently outperforming baseline  
-**Right:** Automatic S-ratio tracking within target band (1.0% ± 0.2pp)
+**Real control dynamics:** S(t) oscillates around target (1.0% ± 0.2pp) showing active PI control adjustments. This is actual telemetry from training, not a simulation.
 
 ## Ablation Study: Adaptive vs Fixed λ
 
