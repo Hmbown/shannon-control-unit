@@ -66,3 +66,20 @@ data/*.json
 # Private outreach materials
 scu_outreach/
 .hf_cache/
+
+# Website cleanup - hide unused pages and backups
+web/_pricing_backup.html
+web/collaborate.html
+web/comparison.html  
+web/dashboard.html
+web/deep-dive.html
+web/demo.html
+web/docs.html
+web/faq.html
+web/how-it-works.html
+web/index_*.html
+web/models.html
+web/test-visualization.html
+web/waitlist.html
+web/css/deprecated/
+web/js/deprecated/
