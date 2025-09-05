@@ -71,10 +71,10 @@ Set your target information ratio \( S^* \), and our PI controller automatically
 <summary><b>Training curves (details)</b></summary>
 
 **DataBPT (bits/token)**  
-![DataBPT curve](https://raw.githubusercontent.com/Hmbown/shannon-control-unit/main/assets/figures/data_bpt_curve.png)
+![DataBPT curve](assets/figures/data_bpt_curve.png)
 
 **ParamBPT (bits/token)**  
-![ParamBPT curve](https://raw.githubusercontent.com/Hmbown/shannon-control-unit/main/assets/figures/param_bpt_curve.png)
+![ParamBPT curve](assets/figures/param_bpt_curve.png)
 
 </details>
 
