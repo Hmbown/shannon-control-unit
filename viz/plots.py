@@ -730,7 +730,7 @@ def generate_captions(out_dir: str = 'assets/figures') -> None:
         },
         "validation_delta": {
             "alt": "Validation BPT and perplexity comparison: Base vs SCU with delta.",
-            "caption": "Fig. 3 — Held-out: Base 3.920 BPT (ppl 15.14) vs SCU 3.676 BPT (ppl 12.78), Δ = −0.244 BPT (≈ −15.6% ppl)."
+            "caption": "Fig. 3 — Held-out: Base 3.920 BPT (ppl 15.14) vs SCU 3.676 BPT (ppl 12.78), Δ = −6.2% BPT (≈ −15.6% ppl)."
         },
         "grid_vs_pi": {
             "alt": "Validation BPT for fixed lambda settings compared to PI-controlled run.",

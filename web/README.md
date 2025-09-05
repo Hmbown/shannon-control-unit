@@ -60,7 +60,7 @@ Edit lines 89-101 in `index.html`:
 ```html
 <td>3.920</td>  <!-- Base BPT -->
 <td>3.676</td>  <!-- SCU BPT -->
-<td>−0.244</td> <!-- Delta -->
+<td>−6.2%</td> <!-- Delta -->
 ```
 
 ### Add plot images
@@ -69,7 +69,7 @@ Place in `/assets/figures/`:
 - `lambda_curve.png` - λ(t) bounded behavior
 
 ## Key Features
-- **Results-first**: ΔBPT −0.244 hero metric
+- **Results-first**: ΔBPT −6.2% hero metric
 - **Evidence-driven**: Table + plots above fold
 - **Reproducible**: HF models + Colab links
 - **Investor CTA**: "Request the deck" mailto
