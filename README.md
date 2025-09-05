@@ -31,16 +31,24 @@ inference: false
 Set your target information ratio \( S^* \), and our PI controller automatically adjusts \( \lambda \) to maintain it throughout training. No manual hyperparameter tuning required.
 
 **Validated Results:**
-- **Llama-3.2-1B:** Base 3.920 BPT → SCU 3.676 BPT (15.6% lower perplexity, 6.2% lower BPT)
-- **🎯 Llama-3.2-3B:** Base 1.8295 BPT → SCU 1.6351 BPT (10.6% lower BPT)
-- **Production ready:** Seeking partnerships for 7B+ scale validation
+
+| Model | Metric | Baseline | SCU | Improvement |
+|-------|--------|----------|-----|-------------|
+| **Llama-3.2-1B** | BPT | 3.920 | 3.676 | **-6.2%** |
+| | Perplexity | 15.14 | 12.78 | **-15.6%** |
+| **Llama-3.2-3B** 🎯 | BPT | 1.830 | 1.635 | **-10.6%** |
+| | Perplexity | 3.56 | 3.11 | **-12.6%** |
+
+**Production ready:** Seeking partnerships for 7B+ scale validation
 
 ## Available Models
 
-- **Main directory**: Llama-3.2-1B SCU adapter (validated, S=1.0%)
-- **1b-scu/**: Same as main (Llama-3.2-1B SCU, S=1.0%, λ adaptive)
-- **3b-scu/**: Llama-3.2-3B SCU adapter (S=2.88%, λ=2.61) 
-- **3b-fixed/**: Llama-3.2-3B fixed λ=0.5 (S=3.35%)
+| Directory | Model | S* Target | λ Control | Notes |
+|-----------|-------|-----------|-----------|-------|
+| **main** | Llama-3.2-1B | 1.0% | Adaptive PI | Primary validated model |
+| **1b-scu/** | Llama-3.2-1B | 1.0% | Adaptive PI | Same as main |
+| **3b-scu/** | Llama-3.2-3B | 2.88% | Adaptive (λ=2.61) | Best 3B performance |
+| **3b-fixed/** | Llama-3.2-3B | 3.35% | Fixed λ=0.5 | Ablation study |
 
 ![Validation: Base vs SCU](assets/figures/validation_delta.png)
 
@@ -74,7 +82,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 import torch
 
-# For 1B model (recommended - validated with 6.2% improvement)
+# For 1B model (validated with 6.2% BPT improvement)
 base_id = "meta-llama/Llama-3.2-1B"  # accept terms on HF first
 base = AutoModelForCausalLM.from_pretrained(base_id, device_map="auto", torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32)
 tok  = AutoTokenizer.from_pretrained(base_id)
@@ -96,7 +104,7 @@ model = PeftModel.from_pretrained(base, "hunterbown/shannon-control-unit")
 ## How It Works (Cruise Control Analogy)
 
 Just like cruise control in your car:
-- **You set the target:** Choose your information ratio $S^*$ (typically 1.0%)  
+- **You set the target:** Choose your information ratio $S^*$  
 - **SCU maintains it automatically:** PI controller adjusts $\lambda$ in real-time
 - **No manual intervention:** Works across data distribution shifts and training dynamics
 
@@ -104,6 +112,9 @@ Just like cruise control in your car:
 - **Control variable:** $S=\frac{\text{ParamBPT}}{\text{DataBPT}+\text{ParamBPT}}$
 - **Control law:** $\lambda \leftarrow \lambda \cdot \exp(-(K_p\,\text{error}+K_i\,I))$
 - **Result:** Automatic regularization without hyperparameter sweeps
+
+**Key Research Question:** 
+Optimal $S^*$ scaling laws are still being discovered. We found 1.0% works for 1B models and 2.88% for 3B models. The relationship between model size, training data, and optimal $S^*$ is an active area of research.
 
 ---
 
